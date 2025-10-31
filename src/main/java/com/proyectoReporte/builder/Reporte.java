@@ -80,6 +80,11 @@ public class Reporte {
             return this;
         }
 
+        public ReporteBuilder agregarOrientacion(Orientacion orientacion) {
+            this.orientacion = orientacion;
+            return this;
+        }
+
         //Metodo para construir el objeto Reporte
         public Reporte construir() {
             return new Reporte(this);
