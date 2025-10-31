@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
  * Las instancias de esta clase son construidas usando el patrón Builder (ReporteBuilder).
  * [Requerimiento: 2]
  */
-
 public class Reporte {
     //Atributos que son obligatorios
     private final String titulo;
@@ -43,4 +42,49 @@ public class Reporte {
                 "  orientacion=" + orientacion + "\n" +
                 "]";
     }
+
+    // Clase estática interna que implementa el patrón Builder
+    public static class ReporteBuilder {
+        private final String titulo;
+        private final String cuerpoPrincipal;
+
+        private String encabezado;
+        private String pieDePagina;
+        private java.time.LocalDateTime fecha;
+        private String autor;
+        private Orientacion orientacion;
+
+        public ReporteBuilder(String titulo, String cuerpoPrincipal) {
+            this.titulo = titulo;
+            this.cuerpoPrincipal = cuerpoPrincipal;
+        }
+
+        //Metodos para agregar atributos opcionales
+        public ReporteBuilder agregarEncabezado(String encabezado) {
+            this.encabezado = encabezado;
+            return this; // Se retorna el mismo builder para permitir encadenamiento
+        }
+
+        public ReporteBuilder agregarPieDePagina(String pieDePagina) {
+            this.pieDePagina = pieDePagina;
+            return this;
+        }
+
+        public ReporteBuilder agregarFecha(java.time.LocalDateTime fecha) {
+            this.fecha = fecha;
+            return this;
+        }
+
+        public ReporteBuilder agregarAutor(String autor) {
+            this.autor = autor;
+            return this;
+        }
+
+        //Metodo para construir el objeto Reporte
+        public Reporte construir() {
+            return new Reporte(this);
+        }
+
+    }
+
 }
