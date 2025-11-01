@@ -29,3 +29,20 @@ El patrón Builder es ideal para construir objetos complejos paso a paso. Permit
 
 - Evita el "Constructor Telescopico": No se necesita crear múltiples constructores, solo un Builder que se configura fluidamente.
 - Evita que el constructor tenga múltiples parámetros y nulls, es decir, el cliente no tiene que llamar a un constructor como por ejemplo " new Reporte("Mi Título", "Cuerpo...", null, "Mi mano", null, null, null) " . En lugar de eso solo llama a los métodos "setter" de los atributos opcionales que realmente desea configurar.
+
+### Requerimiento 3: El Gestor de Configuración Global
+* **¿Qué patrón de diseño creacional eligieron?**
+    Se eligió el patrón **Singleton**.
+
+* **¿Por qué este patrón es la solución adecuada para este requerimiento?**
+    Este patrón es la solución idónea porque el requerimiento exige explícitamente las dos características principales del Singleton:
+    1.  **Instancia Única:** El sistema debe garantizar que "solo exista una y solo una instancia del objeto `GestorConfiguracion`"
+    2.  **Punto de Acceso Global:** Se necesita un "único punto de acceso a esta configuración" para todos los módulos de la aplicación (Finanzas, Marketing, RRHH)
+
+    El patrón Singleton resuelve esto directamente, previniendo la ineficiencia y las "inconsistencias en los datos" que ocurrirían si múltiples objetos de configuración (con valores potencialmente diferentes) pudieran coexistir.
+
+* **¿Cómo garantizaron la unicidad de la instancia?**
+    La unicidad de la instancia se garantizó implementando los tres pilares fundamentales del patrón Singleton:
+    1.  **Constructor Privado:** Se declaró el constructor de la clase como `private GestorConfiguracion()`. Esto impide que cualquier otra clase pueda instanciar el objeto usando la palabra clave `new`.
+    2.  **Instancia Estática Privada:** Se creó una única instancia, `private static final`, de la misma clase dentro de ella misma. Esta instancia se inicializa una sola vez cuando la clase es cargada.
+    3.  **Método Estático Público:** Se proporciona un método `public static GestorConfiguracion getInstance()` que actúa como el único punto de acceso global y que devuelve siempre la única instancia ya creada.
