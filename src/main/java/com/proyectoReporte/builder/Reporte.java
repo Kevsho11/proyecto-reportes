@@ -1,6 +1,6 @@
 package com.proyectoReporte.builder;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 /** 
  * Clase que representa un reporte (objeto complejo).
  * Las instancias de esta clase son construidas usando el patrón Builder (ReporteBuilder).
@@ -14,7 +14,7 @@ public class Reporte {
     //Atributos que son opcionales
     private final String encabezado;
     private final String pieDePagina;
-    private final LocalDateTime fecha;
+    private final LocalDate fecha;
     private final String autor;
     private final Orientacion orientacion;
 
@@ -46,7 +46,7 @@ public class Reporte {
         return pieDePagina;
     }
 
-    public LocalDateTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -78,7 +78,7 @@ public class Reporte {
 
         private String encabezado;
         private String pieDePagina;
-        private java.time.LocalDateTime fecha;
+        private LocalDate fecha;
         private String autor;
         private Orientacion orientacion;
 
@@ -98,7 +98,7 @@ public class Reporte {
             return this;
         }
 
-        public ReporteBuilder agregarFecha(java.time.LocalDateTime fecha) {
+        public ReporteBuilder agregarFecha(LocalDate fecha) {
             this.fecha = fecha;
             return this;
         }

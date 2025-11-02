@@ -3,7 +3,7 @@ package com.proyectoReporte;
 //Importaciones para el Requerimiento 2
 import com.proyectoReporte.builder.Reporte;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import com.proyectoReporte.builder.Orientacion;
 
@@ -21,7 +21,7 @@ public class Main {
         Reporte reporteCompleto = new Reporte.ReporteBuilder("Reporte Financiero Anual", "Cuerpo principal con análisis detallado")
                 .agregarEncabezado("Empresa Faramacia S.A.")
                 .agregarPieDePagina("Confidencial - No distribuir")
-                .agregarFecha(LocalDateTime.of(2025, 10, 31, 14, 0))
+                .agregarFecha(LocalDate.of(2025, 10, 31))
                 .agregarAutor("Fran Lozano")
                 .agregarOrientacion(Orientacion.HORIZONTAL)
                 .construir();
