@@ -46,3 +46,5 @@ El patrón Builder es ideal para construir objetos complejos paso a paso. Permit
     1.  **Constructor Privado:** Se declaró el constructor de la clase como `private GestorConfiguracion()`. Esto impide que cualquier otra clase pueda instanciar el objeto usando la palabra clave `new`.
     2.  **Instancia Estática Privada:** Se creó una única instancia, `private static final`, de la misma clase dentro de ella misma. Esta instancia se inicializa una sola vez cuando la clase es cargada.
     3.  **Método Estático Público:** Se proporciona un método `public static GestorConfiguracion getInstance()` que actúa como el único punto de acceso global y que devuelve siempre la única instancia ya creada.
+
+<img width="2777" height="1556" alt="mermaid-diagram-2025-11-02-093155" src="https://github.com/user-attachments/assets/09b75ef4-342c-4023-b27c-c529cd2be0b6" />
