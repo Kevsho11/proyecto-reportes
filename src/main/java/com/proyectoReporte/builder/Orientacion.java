@@ -1,4 +1,4 @@
-package main.java.com.proyectoReporte.builder;
+package com.proyectoReporte.builder;
 
 //Enum para la orientación del reporte
 public enum Orientacion {

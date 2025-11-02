@@ -1,4 +1,4 @@
-package main.java.com.proyectoReporte.singleton;
+package com.proyectoReporte.singleton;
 
 /**
  * Implementación del Patrón Singleton para el Gestor de Configuración.

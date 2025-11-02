@@ -1,4 +1,4 @@
-package main.java.com.proyectoReporte.builder;
+package com.proyectoReporte.builder;
 
 import java.time.LocalDateTime;
 /** 
@@ -30,6 +30,34 @@ public class Reporte {
     }
 
     //Getters para los atributos
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getCuerpoPrincipal() {
+        return cuerpoPrincipal;
+    }
+
+    public String getEncabezado() {
+        return encabezado;
+    }
+
+    public String getPieDePagina() {
+        return pieDePagina;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public Orientacion getOrientacion() {
+        return orientacion;
+    }
+
     @Override
     public String toString(){
         return "Reporte [\n" +

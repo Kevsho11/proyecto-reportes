@@ -1,11 +1,11 @@
-package main.java.com.proyectoReporte;
+package com.proyectoReporte;
 
 //Importaciones para el Requerimiento 2
-import main.java.com.proyectoReporte.builder.Reporte;
+import com.proyectoReporte.builder.Reporte;
 
 import java.time.LocalDateTime;
 
-import main.java.com.proyectoReporte.builder.Orientacion;
+import com.proyectoReporte.builder.Orientacion;
 
 public class Main {
     public static void main(String[] args){
