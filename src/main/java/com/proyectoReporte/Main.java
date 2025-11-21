@@ -1,42 +1,76 @@
 package com.proyectoReporte;
 
-//Importaciones para el Requerimiento 2
+import com.proyectoReporte.factory.Renderizador;
+import com.proyectoReporte.factory.RenderizadorFactory;
 import com.proyectoReporte.builder.Reporte;
+import com.proyectoReporte.builder.Orientacion;
+import com.proyectoReporte.singleton.GestorConfiguracion;
 
 import java.time.LocalDate;
 
-import com.proyectoReporte.builder.Orientacion;
-
 public class Main {
     public static void main(String[] args){
+        
+        // Singleton
+        GestorConfiguracion config1 = GestorConfiguracion.getInstance();
+        System.out.println("URL BD: " + config1.getUrlBd());
+        System.out.println("Usuario BD: " + config1.getUserBd());
+        System.out.println("Path Reportes: " + config1.getPathReportes());
+        
+        GestorConfiguracion config2 = GestorConfiguracion.getInstance();
+        config2.setPathReportes("/nuevo/path/reportes/");
+        System.out.println("Path desde config1: " + config1.getPathReportes());
+        System.out.println("Es la misma instancia: " + (config1 == config2));
+        System.out.println();
 
-        //1) Reporte minimo (campos obligatorios)
-        Reporte reporteMinimo = new Reporte.ReporteBuilder("Informe ventas 1", "Resumen de ventas")
+        // Builder
+        Reporte reporteMinimo = new Reporte.ReporteBuilder("Informe Ventas Q1", "Resumen de ventas del primer trimestre")
                 .construir();
-        System.out.println("=== Reporte Mínimo ===");
         System.out.println(reporteMinimo);
-        System.out.println(); //Salto de línea
+        System.out.println();
 
-        //2) Reporte con varios atributos opcionales
-        Reporte reporteCompleto = new Reporte.ReporteBuilder("Reporte Financiero Anual", "Cuerpo principal con análisis detallado")
-                .agregarEncabezado("Empresa Faramacia S.A.")
+        Reporte reporteCompleto = new Reporte.ReporteBuilder("Reporte Financiero Anual 2024", "Análisis financiero detallado del año completo")
+                .agregarEncabezado("Empresa Farmacéutica S.A.")
                 .agregarPieDePagina("Confidencial - No distribuir")
-                .agregarFecha(LocalDate.of(2025, 10, 31))
+                .agregarFecha(LocalDate.of(2024, 12, 31))
                 .agregarAutor("Fran Lozano")
                 .agregarOrientacion(Orientacion.HORIZONTAL)
                 .construir();
-        System.out.println("=== Reporte Completo ===");
         System.out.println(reporteCompleto);
         System.out.println();
 
-        //3) Reporte con ALGUNOS atributos opcionales (Acá demostramos flexibilidad))
-        Reporte reporteParcial = new Reporte.ReporteBuilder("Reporte de Marketing", "Análisis de campañas publicitarias")
+        Reporte reporteParcial = new Reporte.ReporteBuilder("Reporte de Marketing Digital", "Análisis de campañas publicitarias online")
                 .agregarAutor("Kevin Luchiano Rodríguez")
                 .agregarOrientacion(Orientacion.VERTICAL)
+                .agregarFecha(LocalDate.now())
                 .construir();
-        System.out.println("=== Reporte Parcial ===");
         System.out.println(reporteParcial);
-        System.out.println(); 
+        System.out.println();
+
+        // Factory
+        Renderizador renderizadorPDF = RenderizadorFactory.crearRenderizador("PDF");
+        renderizadorPDF.renderizar(reporteCompleto);
+        System.out.println();
+
+        Renderizador renderizadorExcel = RenderizadorFactory.crearRenderizador("EXCEL");
+        renderizadorExcel.renderizar(reporteParcial);
+        System.out.println();
+
+        Renderizador renderizadorCSV = RenderizadorFactory.crearRenderizador("CSV");
+        renderizadorCSV.renderizar(reporteMinimo);
+        System.out.println();
+
+        // Integración
+        GestorConfiguracion config = GestorConfiguracion.getInstance();
+        System.out.println("Path reportes: " + config.getPathReportes());
+        
+        Reporte reporteIntegrado = new Reporte.ReporteBuilder("Reporte Integrado", "Demostración de integración de patrones")
+                .agregarAutor("Sistema de Reportes")
+                .agregarFecha(LocalDate.now())
+                .agregarOrientacion(Orientacion.VERTICAL)
+                .construir();
+        
+        Renderizador renderizador = RenderizadorFactory.crearRenderizador("PDF");
+        renderizador.renderizar(reporteIntegrado);
     }
-    
 }
